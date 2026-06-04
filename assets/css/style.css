@@ -1,0 +1,61 @@
+/* 
+ * Custom Styles for Radio News Theme
+ */
+
+/* Swup Page Transition Animations */
+.transition-fade {
+    transition: 0.3s;
+    opacity: 1;
+}
+
+html.is-animating .transition-fade {
+    opacity: 0;
+}
+
+/* Blink Animation for ON AIR */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+.blink {
+    animation: blink 1.5s infinite;
+}
+
+/* Fix spacing for the fixed footer player */
+body {
+    padding-bottom: 80px;
+}
+
+/* Base WordPress Classes */
+.alignnone { margin: 5px 20px 20px 0; }
+.aligncenter, div.aligncenter { display: block; margin: 5px auto 5px auto; }
+.alignright { float: right; margin: 5px 0 20px 20px; }
+.alignleft { float: left; margin: 5px 20px 20px 0; }
+a img.alignright { float: right; margin: 5px 0 20px 20px; }
+a img.alignnone { margin: 5px 20px 20px 0; }
+a img.alignleft { float: left; margin: 5px 20px 20px 0; }
+a img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+.wp-caption { background: #fff; border: 1px solid #f0f0f0; max-width: 96%; padding: 5px 3px 10px; text-align: center; }
+.wp-caption.alignnone { margin: 5px 20px 20px 0; }
+.wp-caption.alignleft { margin: 5px 20px 20px 0; }
+.wp-caption.alignright { margin: 5px 0 20px 20px; }
+.wp-caption img { border: 0 none; height: auto; margin: 0; max-width: 98.5%; padding: 0; width: auto; }
+.wp-caption p.wp-caption-text { font-size: 11px; line-height: 17px; margin: 0; padding: 0 4px 5px; }
+
+/* Custom Logo */
+.custom-logo-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.custom-logo {
+    max-height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+@media (min-width: 768px) {
+    .custom-logo {
+        max-height: 50px;
+    }
+}
