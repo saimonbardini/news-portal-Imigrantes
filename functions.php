@@ -52,6 +52,9 @@ function radio_news_theme_scripts() {
     
     // Nosso script principal
 	wp_enqueue_script( 'radio-news-theme-main', get_template_directory_uri() . '/assets/js/main.js', array('swup'), '1.0.0', true );
+
+    // Script do clima
+    wp_enqueue_script( 'radio-news-theme-weather', get_template_directory_uri() . '/assets/js/weather.js', array(), '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'radio_news_theme_scripts' );
 

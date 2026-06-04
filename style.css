@@ -11,3 +11,21 @@ Text Domain: radio-news-theme
 */
 
 @import url('assets/css/style.css');
+
+/* Animação Contínua (Marquee) para o Clima */
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%); /* Rola 50% porque o DOM está sendo duplicado no HTML */
+    }
+}
+
+.animate-marquee {
+    animation: marquee 35s linear infinite;
+}
+
+.group:hover .group-hover\:pause {
+    animation-play-state: paused;
+}

@@ -92,6 +92,38 @@
         </div>
     </aside>
 
+    <!-- Weather Bar -->
+    <div id="weather-bar" class="bg-gray-100 border-b border-gray-200 text-xs sm:text-sm text-gray-700 relative overflow-hidden z-20 h-8 sm:h-10 flex items-center">
+        <div class="container mx-auto px-4 w-full h-full flex items-center justify-between">
+            <!-- Loading indicator -->
+            <div id="weather-loading" class="w-full flex justify-center items-center h-full text-gray-500 space-x-2">
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                <span>Carregando clima da região...</span>
+            </div>
+
+            <!-- Weather Content -->
+            <div id="weather-content" class="w-full hidden items-center h-full justify-between">
+                <!-- Barra Rolante Unificada (Marquee) -->
+                <div class="flex-1 relative h-full overflow-hidden flex items-center group">
+                    <!-- O contêiner pai do letreiro -->
+                    <div id="weather-scroller" class="flex whitespace-nowrap animate-marquee group-hover:pause w-max flex-shrink-0">
+                        <!-- JS irá popular a div principal e seu clone para fazer o loop infinito suave -->
+                        <div id="weather-items" class="flex items-center space-x-6 pr-6 flex-shrink-0"></div>
+                        <div id="weather-items-clone" class="flex items-center space-x-6 pr-6 flex-shrink-0" aria-hidden="true"></div>
+                    </div>
+                </div>
+                
+                <!-- Regional Info Block (Desktop only) -->
+                <div id="weather-extra" class="hidden lg:flex items-center space-x-4 pl-4 border-l border-gray-300 h-full whitespace-nowrap flex-shrink-0 text-[11px] xl:text-xs">
+                    <span title="Região AMESC" class="font-medium"><i class="fa-solid fa-location-dot text-red-600 mr-1"></i> AMESC</span>
+                    <span id="weather-time" class="text-gray-500"><i class="fa-regular fa-clock mr-1"></i> <span class="time-val">--:--</span></span>
+                    <span id="weather-hottest" class="text-orange-600 hidden"><i class="fa-solid fa-temperature-arrow-up mr-1"></i> <span class="hottest-val">--</span></span>
+                    <span id="weather-alerts" class="text-blue-600"><i class="fa-solid fa-cloud-showers-water mr-1"></i> Sem alertas</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
 	<header id="masthead" class="bg-[#c4170c] text-white relative z-30 shadow-md">
 		<div class="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
             
