@@ -123,7 +123,7 @@ if ( count($secondary_posts) < 3 ) {
                 <?php
                 $categories = get_the_category();
                 if ( ! empty( $categories ) ) {
-                    echo '<span class="inline-block bg-[#c4170c] text-white text-xs font-bold uppercase px-3 py-1.5 mb-3 rounded-sm">' . esc_html( $categories[0]->name ) . '</span>';
+                    echo '<span class="inline-block bg-[#1E73BE] text-white text-xs font-bold uppercase px-3 py-1.5 mb-3 rounded-sm">' . esc_html( $categories[0]->name ) . '</span>';
                 }
                 ?>
                 <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight drop-shadow-md">
@@ -154,7 +154,7 @@ if ( count($secondary_posts) < 3 ) {
                     <?php
                     $categories = get_the_category();
                     if ( ! empty( $categories ) ) {
-                        echo '<span class="inline-block bg-[#c4170c] text-white text-[10px] font-bold uppercase px-2 py-1 mb-2 rounded-sm">' . esc_html( $categories[0]->name ) . '</span>';
+                        echo '<span class="inline-block bg-[#1E73BE] text-white text-[10px] font-bold uppercase px-2 py-1 mb-2 rounded-sm">' . esc_html( $categories[0]->name ) . '</span>';
                     }
                     ?>
                     <h3 class="text-lg md:text-xl lg:text-lg font-bold text-white mb-2 leading-snug line-clamp-2 group-hover:text-gray-200 transition-colors drop-shadow-md">
@@ -171,8 +171,8 @@ if ( count($secondary_posts) < 3 ) {
 
 <!-- Últimas Notícias (Lista Padrão) -->
 <section class="container mx-auto px-4 py-8 max-w-7xl mb-24">
-    <header class="mb-8 border-b-2 border-[#c4170c] pb-2">
-        <h2 class="text-2xl font-bold uppercase text-[#c4170c]">Últimas Notícias</h2>
+    <header class="mb-8 border-b-2 border-[#1E73BE] pb-2">
+        <h2 class="text-2xl font-bold uppercase text-[#1E73BE]">Últimas Notícias</h2>
     </header>
 
     <?php
@@ -200,12 +200,12 @@ if ( count($secondary_posts) < 3 ) {
             $current_page = max(1, get_query_var('paged'));
             echo '<div class="mt-8 flex justify-between">';
             if ($current_page > 1) {
-                echo '<a href="' . get_pagenum_link($current_page - 1) . '" class="font-bold text-[#c4170c] uppercase">← Mais recentes</a>';
+                echo '<a href="' . get_pagenum_link($current_page - 1) . '" class="font-bold text-[#1E73BE] uppercase">← Mais recentes</a>';
             } else {
                 echo '<div></div>'; // Espaçador
             }
             if ($current_page < $total_pages) {
-                echo '<a href="' . get_pagenum_link($current_page + 1) . '" class="font-bold text-[#c4170c] uppercase">Anteriores →</a>';
+                echo '<a href="' . get_pagenum_link($current_page + 1) . '" class="font-bold text-[#1E73BE] uppercase">Anteriores →</a>';
             }
             echo '</div>';
         }

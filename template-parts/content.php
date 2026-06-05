@@ -22,7 +22,7 @@
 		if ( is_singular() ) :
 			the_title( '<h1 class="entry-title text-4xl font-bold text-gray-900 mb-4 tracking-tight leading-tight">', '</h1>' );
 		else :
-			the_title( '<h2 class="entry-title text-2xl md:text-3xl font-bold text-[#c4170c] hover:text-red-700 tracking-tight leading-tight"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+			the_title( '<h2 class="entry-title text-2xl md:text-3xl font-bold text-[#1E73BE] hover:text-red-700 tracking-tight leading-tight"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		endif;
 
 		if ( 'post' === get_post_type() ) :

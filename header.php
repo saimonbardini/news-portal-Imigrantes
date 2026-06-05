@@ -22,7 +22,7 @@
         
         <!-- Menu Header -->
         <div class="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50">
-            <span class="font-bold text-lg text-[#c4170c]">Menu</span>
+            <span class="font-bold text-lg text-[#1E73BE]">Menu</span>
             <button id="close-menu-btn" class="text-gray-500 hover:text-red-600 focus:outline-none p-2" aria-label="Fechar menu">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
@@ -42,7 +42,7 @@
                         <?php 
                         $editorias = ['Política', 'Economia', 'Agronegócio', 'Educação', 'Saúde', 'Segurança', 'Cultura', 'Esportes', 'Tecnologia', 'Região', 'Municípios'];
                         foreach($editorias as $cat) {
-                            echo '<li class="py-2"><a href="#" class="text-gray-600 hover:text-[#c4170c] block pl-8">' . esc_html($cat) . '</a></li>';
+                            echo '<li class="py-2"><a href="#" class="text-gray-600 hover:text-[#1E73BE] block pl-8">' . esc_html($cat) . '</a></li>';
                         }
                         ?>
                     </ul>
@@ -55,8 +55,8 @@
                         <i class="fa-solid fa-chevron-down text-sm transition-transform duration-200"></i>
                     </button>
                     <ul class="accordion-content hidden bg-gray-50 px-5 py-2">
-                        <li class="py-2"><a href="#" class="text-gray-600 hover:text-[#c4170c] block pl-8">Palavras Cruzadas</a></li>
-                        <li class="py-2"><a href="#" class="text-gray-600 hover:text-[#c4170c] block pl-8">Sudoku</a></li>
+                        <li class="py-2"><a href="#" class="text-gray-600 hover:text-[#1E73BE] block pl-8">Palavras Cruzadas</a></li>
+                        <li class="py-2"><a href="#" class="text-gray-600 hover:text-[#1E73BE] block pl-8">Sudoku</a></li>
                     </ul>
                 </li>
 
@@ -86,7 +86,7 @@
 
         <!-- Menu Footer (Fixed Bottom) -->
         <div class="absolute bottom-0 left-0 w-full p-4 bg-gray-100 border-t border-gray-200">
-            <a href="#" class="flex items-center justify-center w-full bg-[#c4170c] text-white py-3 px-4 rounded font-bold hover:bg-red-700 transition-colors shadow-sm">
+            <a href="#" class="flex items-center justify-center w-full bg-[#1E73BE] text-white py-3 px-4 rounded font-bold hover:bg-red-700 transition-colors shadow-sm">
                 <i class="fa-solid fa-user mr-2"></i> Acesso Restrito
             </a>
         </div>
@@ -124,7 +124,7 @@
         </div>
     </div>
 
-	<header id="masthead" class="bg-[#c4170c] text-white relative z-30 shadow-md">
+	<header id="masthead" class="bg-[#1E73BE] text-white relative z-30 shadow-md">
 		<div class="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
             
             <!-- Left: Menu Toggle + Logo -->
@@ -153,7 +153,7 @@
             <div class="hidden md:flex flex-1 max-w-2xl mx-8">
                 <form role="search" method="get" class="w-full relative group" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                     <input type="search" class="w-full bg-white text-gray-900 rounded-full py-2.5 pl-5 pr-12 focus:outline-none focus:ring-2 focus:ring-red-400 placeholder-gray-500 text-sm md:text-base shadow-inner transition-shadow" placeholder="Buscar notícias, categorias, conteúdos..." value="<?php echo get_search_query(); ?>" name="s" title="Pesquisar" />
-                    <button type="submit" class="absolute right-0 top-0 mt-2.5 mr-4 text-gray-500 hover:text-[#c4170c] transition-colors">
+                    <button type="submit" class="absolute right-0 top-0 mt-2.5 mr-4 text-gray-500 hover:text-[#1E73BE] transition-colors">
                         <i class="fa-solid fa-magnifying-glass text-lg"></i>
                     </button>
                 </form>
@@ -167,7 +167,7 @@
                 </button>
                 
                 <!-- Acesso Restrito Desktop -->
-                <a href="#" class="hidden md:flex items-center space-x-2 border border-white hover:bg-white hover:text-[#c4170c] px-5 py-2 rounded-full transition-colors font-semibold text-sm shadow-sm">
+                <a href="#" class="hidden md:flex items-center space-x-2 border border-white hover:bg-white hover:text-[#1E73BE] px-5 py-2 rounded-full transition-colors font-semibold text-sm shadow-sm">
                     <i class="fa-solid fa-user"></i>
                     <span>Acesso Restrito</span>
                 </a>
@@ -181,7 +181,7 @@
         </div>
         
         <!-- Mobile Search Dropdown -->
-        <div id="mobile-search-container" class="hidden md:hidden px-4 pb-4 w-full bg-[#c4170c]">
+        <div id="mobile-search-container" class="hidden md:hidden px-4 pb-4 w-full bg-[#1E73BE]">
             <form role="search" method="get" class="w-full relative" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                 <input type="search" class="w-full bg-white text-gray-900 rounded-full py-2 pl-4 pr-10 focus:outline-none placeholder-gray-500 text-sm shadow-inner" placeholder="Buscar..." value="<?php echo get_search_query(); ?>" name="s" />
                 <button type="submit" class="absolute right-0 top-0 mt-2 mr-3 text-gray-500">

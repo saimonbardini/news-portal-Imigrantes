@@ -14,8 +14,8 @@ get_header();
 
         if ( is_home() && ! is_front_page() ) :
             ?>
-            <header class="mb-8 border-b-2 border-[#c4170c] pb-2">
-                <h1 class="page-title text-3xl font-bold uppercase text-[#c4170c]"><?php single_post_title(); ?></h1>
+            <header class="mb-8 border-b-2 border-[#1E73BE] pb-2">
+                <h1 class="page-title text-3xl font-bold uppercase text-[#1E73BE]"><?php single_post_title(); ?></h1>
             </header>
             <?php
         endif;
@@ -33,8 +33,8 @@ get_header();
         echo '</div>';
 
         the_posts_navigation(array(
-            'prev_text' => '<span class="font-bold text-[#c4170c] uppercase">← Anteriores</span>',
-            'next_text' => '<span class="font-bold text-[#c4170c] uppercase">Mais recentes →</span>',
+            'prev_text' => '<span class="font-bold text-[#1E73BE] uppercase">← Anteriores</span>',
+            'next_text' => '<span class="font-bold text-[#1E73BE] uppercase">Mais recentes →</span>',
             'class'     => 'mt-8 flex justify-between'
         ));
 
