@@ -169,53 +169,61 @@ if ( count($secondary_posts) < 3 ) {
     </div>
 </section>
 
-<!-- Últimas Notícias (Lista Padrão) -->
-<section class="container mx-auto px-4 py-8 max-w-7xl mb-24">
-    <header class="mb-8 border-b-2 border-[#1E73BE] pb-2">
-        <h2 class="text-2xl font-bold uppercase text-[#1E73BE]">Últimas Notícias</h2>
-    </header>
+<!-- Conteúdo Principal com Sidebar -->
+<div class="container mx-auto px-4 py-8 max-w-7xl mb-24">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+        
+        <!-- Coluna de Notícias -->
+        <main class="lg:w-2/3">
+            <header class="mb-8 border-b-2 border-[#1E73BE] pb-2">
+                <h2 class="text-2xl font-bold uppercase text-[#1E73BE]">Últimas Notícias</h2>
+            </header>
 
-    <?php
-    // Query para as últimas notícias, ignorando os posts já exibidos no Hero
-    $latest_args = array(
-        'post__not_in' => $exclude_ids,
-        'paged' => ( get_query_var('paged') ) ? get_query_var('paged') : 1,
-        'ignore_sticky_posts' => 1
-    );
-    $latest_query = new WP_Query( $latest_args );
+            <?php
+            // Query para as últimas notícias, ignorando os posts já exibidos no Hero
+            $latest_args = array(
+                'post__not_in' => $exclude_ids,
+                'paged' => ( get_query_var('paged') ) ? get_query_var('paged') : 1,
+                'ignore_sticky_posts' => 1
+            );
+            $latest_query = new WP_Query( $latest_args );
 
-    if ( $latest_query->have_posts() ) {
-        echo '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">';
+            if ( $latest_query->have_posts() ) {
+                // Ajustado para 2 colunas para caber melhor ao lado da sidebar
+                echo '<div class="grid grid-cols-1 md:grid-cols-2 gap-8">';
 
-        while ( $latest_query->have_posts() ) {
-            $latest_query->the_post();
-            get_template_part( 'template-parts/content', get_post_type() );
-        }
+                while ( $latest_query->have_posts() ) {
+                    $latest_query->the_post();
+                    get_template_part( 'template-parts/content', get_post_type() );
+                }
 
-        echo '</div>';
+                echo '</div>';
 
-        // Navegação
-        $total_pages = $latest_query->max_num_pages;
-        if ($total_pages > 1) {
-            $current_page = max(1, get_query_var('paged'));
-            echo '<div class="mt-8 flex justify-between">';
-            if ($current_page > 1) {
-                echo '<a href="' . get_pagenum_link($current_page - 1) . '" class="font-bold text-[#1E73BE] uppercase">← Mais recentes</a>';
+                // Navegação de paginação aprimorada
+                $total_pages = $latest_query->max_num_pages;
+                if ($total_pages > 1) {
+                    $current_page = max(1, get_query_var('paged'));
+                    echo '<div class="mt-12 flex justify-center items-center gap-4">';
+                        echo get_previous_posts_link( '&larr; Mais recentes' );
+                        echo '<span class="text-sm text-gray-500">Página ' . $current_page . ' de ' . $total_pages . '</span>';
+                        echo get_next_posts_link( 'Anteriores &rarr;', $total_pages );
+                    echo '</div>';
+                }
+
             } else {
-                echo '<div></div>'; // Espaçador
+                get_template_part( 'template-parts/content', 'none' );
             }
-            if ($current_page < $total_pages) {
-                echo '<a href="' . get_pagenum_link($current_page + 1) . '" class="font-bold text-[#1E73BE] uppercase">Anteriores →</a>';
-            }
-            echo '</div>';
-        }
+            wp_reset_postdata();
+            ?>
+        </main>
 
-    } else {
-        get_template_part( 'template-parts/content', 'none' );
-    }
-    wp_reset_postdata();
-    ?>
-</section>
+        <!-- Sidebar Editorial -->
+        <aside class="lg:w-1/3">
+            <?php get_sidebar(); ?>
+        </aside>
+
+    </div>
+</div>
 
 <?php
 get_footer();

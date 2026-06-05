@@ -1,0 +1,21 @@
+/**
+ * Estilos Personalizados para o Tema Radio News
+ *
+ * 1.0 - Definições de Fonte
+ */
+
+/* 1.0 - Definições de Fonte
+-------------------------------------------------------------- */
+
+/* Define a fonte base 'Roboto' para o corpo do site, para uma aparência mais limpa e profissional. */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* 
+ * Aplica a fonte serifada 'Merriweather' para todos os títulos (h1 a h6).
+ * Isso confere um estilo mais clássico e editorial, como solicitado.
+ */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', serif;
+}

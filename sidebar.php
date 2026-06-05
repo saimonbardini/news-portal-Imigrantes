@@ -25,79 +25,64 @@
         <script>
         document.addEventListener('DOMContentLoaded', function() {
             // --- LÓGICA DA PREVISÃO DO TEMPO ---
-            // Esta é uma implementação de exemplo. Você precisará de uma chave de API de um serviço como
-            // a HG Brasil, que é excelente para o território nacional.
-            //
-            // 1. Obtenha uma chave de API em https://console.hgbrasil.com/
-            // 2. Substitua 'SUA_CHAVE_API' pela sua chave.
+            // Usando o serviço gratuito wttr.in, focado apenas na cidade de Turvo.
             
-            const apiKey = 'SUA_CHAVE_API'; // IMPORTANTE: Substitua pela sua chave!
-            const defaultCity = 'Araranguá'; 
+            const city = 'Turvo'; 
             const container = document.getElementById('weather-widget-container');
-            const cities = ['Turvo', 'Timbé do Sul', 'Ermo', 'Morro Grande', 'Meleiro', 'Jacinto Machado', 'Criciúma', 'Araranguá'];
 
-            async function fetchWeather(city) {
-                // A URL pode precisar de ajustes dependendo da documentação da API
-                const url = `https://api.hgbrasil.com/weather?key=${apiKey}&city_name=${city}&format=json-cors`;
+            async function fetchWeather() {
+                // A URL para o wttr.in que retorna dados em JSON.
+                const url = `https://wttr.in/${encodeURIComponent(city)}?format=j1`;
 
                 try {
                     const response = await fetch(url);
                     if (!response.ok) throw new Error('Erro ao buscar dados do tempo.');
                     const data = await response.json();
-                    renderWeather(data.results);
+                    renderWeather(data);
                 } catch (error) {
-                    container.innerHTML = `<p class="text-red-500 text-sm">${error.message} Verifique a chave da API.</p>`;
+                    container.innerHTML = `<p class="text-center text-red-500 text-sm">${error.message}</p>`;
                     console.error(error);
                 }
             }
 
-            function getIconForPeriod(period) {
-                if (period === 'morning') return 'fa-sun';
-                if (period === 'afternoon') return 'fa-cloud-sun';
-                if (period === 'night') return 'fa-moon';
-                return 'fa-cloud';
-            }
-
             function renderWeather(weather) {
-                let citySelector = `<select id="city-selector" class="w-full p-2 border rounded-md bg-gray-50 mb-4 text-sm">`;
-                cities.forEach(c => {
-                    citySelector += `<option value="${c}" ${weather.city_name === c ? 'selected' : ''}>${c}</option>`;
-                });
-                citySelector += `</select>`;
+                // Extrai os dados do formato do wttr.in
+                const current = weather.current_condition[0];
+                const forecast = weather.weather[0];
+                const cityName = weather.nearest_area[0].areaName[0].value;
+
+                const maxRainChance = Math.max(...forecast.hourly.map(h => parseInt(h.chanceofrain, 10)));
 
                 const html = `
-                    ${citySelector}
-                    <div class="text-center">
-                        <p class="text-gray-600 text-lg">${weather.description}</p>
-                        <div class="flex items-center justify-center my-3">
-                            <span class="text-6xl font-bold text-gray-800">${weather.temp}°</span>
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="text-lg font-bold text-gray-800">Turvo, SC</h4>
+                        <p class="text-base font-medium text-gray-500">${current.weatherDesc[0].value}</p>
+                    </div>
+                    <div class="text-center my-5">
+                        <span class="text-7xl font-light text-gray-900 tracking-tight">${current.temp_C}°</span>
+                    </div>
+                    <div class="flex justify-around text-center text-gray-700 border-t border-gray-100 pt-4">
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase tracking-wider">Mín.</p>
+                            <p class="font-bold text-lg">${forecast.mintempC}°</p>
                         </div>
-                        <div class="flex justify-around text-gray-600 border-t pt-3 mt-3">
-                            <div class="text-sm"><span class="font-bold">MÍN</span><p>${weather.forecast[0].min}°</p></div>
-                            <div class="text-sm"><span class="font-bold">MÁX</span><p>${weather.forecast[0].max}°</p></div>
-                            <div class="text-sm"><span class="font-bold">CHUVA</span><p>${weather.forecast[0].rain_probability}%</p></div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase tracking-wider">Máx.</p>
+                            <p class="font-bold text-lg">${forecast.maxtempC}°</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase tracking-wider">Chuva</p>
+                            <p class="font-bold text-lg">${maxRainChance}%</p>
                         </div>
                     </div>
-                    <div class="flex justify-around text-center mt-4 bg-gray-50 p-2 rounded-md">
-                        <div><i class="fas ${getIconForPeriod('morning')} text-yellow-500"></i><p class="text-xs">Manhã</p></div>
-                        <div><i class="fas ${getIconForPeriod('afternoon')} text-orange-400"></i><p class="text-xs">Tarde</p></div>
-                        <div><i class="fas ${getIconForPeriod('night')} text-indigo-500"></i><p class="text-xs">Noite</p></div>
-                    </div>
-                    <a href="#" class="block text-center text-[#1E73BE] hover:underline text-sm mt-4 font-semibold">Ver previsão completa</a>
+                    <a href="https://wttr.in/${encodeURIComponent(cityName)}" target="_blank" rel="noopener noreferrer" class="block text-center text-sm text-[#1E73BE] hover:underline mt-5 font-semibold">
+                        Ver previsão completa &rarr;
+                    </a>
                 `;
                 container.innerHTML = html;
-
-                document.getElementById('city-selector').addEventListener('change', function() {
-                    container.innerHTML = '<div class="text-center text-gray-500 py-10"><i class="fas fa-spinner fa-spin fa-2x"></i><p class="mt-2">Carregando...</p></div>';
-                    fetchWeather(this.value);
-                });
             }
             
-            if (apiKey === 'SUA_CHAVE_API' || !apiKey) {
-                 container.innerHTML = '<p class="text-sm text-orange-600">Configure sua chave de API para exibir a previsão do tempo.</p>';
-            } else {
-                fetchWeather(defaultCity);
-            }
+            fetchWeather();
         });
         </script>
     </div>
@@ -106,22 +91,32 @@
     <div class="bg-white p-5 rounded-lg shadow-md border border-gray-100">
         <h3 class="text-xl font-bold text-gray-800 border-b-2 border-[#1E73BE] pb-2 mb-4 uppercase">Leia Também</h3>
         <?php
-        $related_posts_args = array(
-            'posts_per_page' => 4,
-            'post__not_in' => array( get_the_ID() ),
-            'category__in' => wp_get_post_categories( get_the_ID() ),
-            'ignore_sticky_posts' => 1,
-        );
-        $related_posts_query = new WP_Query( $related_posts_args );
-
-        // Fallback para posts mais recentes se não houver relacionados
-        if ( ! $related_posts_query->have_posts() ) {
+        if ( is_front_page() ) {
+            // Na página inicial, mostra posts de uma categoria em destaque ou os mais recentes.
             $related_posts_args = array(
-                'posts_per_page' => 4,
-                'post__not_in' => array( get_the_ID() ),
+                'posts_per_page'      => 4,
+                'category_name'       => 'noticias-locais-e-regionais', // Categoria em destaque para a home
                 'ignore_sticky_posts' => 1,
             );
-            $related_posts_query = new WP_Query( $related_posts_args );
+        } else {
+            // Em páginas de post, busca posts da mesma categoria.
+            $related_posts_args = array(
+                'posts_per_page'      => 4,
+                'post__not_in'        => array( get_the_ID() ),
+                'category__in'        => wp_get_post_categories( get_the_ID() ),
+                'ignore_sticky_posts' => 1,
+            );
+        }
+        $related_posts_query = new WP_Query( $related_posts_args );
+
+        // Fallback para os posts mais recentes se a query principal não retornar nada.
+        if ( ! $related_posts_query->have_posts() ) {
+            $fallback_args = array(
+                'posts_per_page'      => 4,
+                'post__not_in'        => is_singular() ? array( get_the_ID() ) : array(), // Exclui o post/página atual, se aplicável
+                'ignore_sticky_posts' => 1,
+            );
+            $related_posts_query = new WP_Query( $fallback_args );
         }
 
         if ( $related_posts_query->have_posts() ) : ?>

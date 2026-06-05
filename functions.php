@@ -55,6 +55,12 @@ function radio_news_theme_scripts() {
 
     // Script do clima
     wp_enqueue_script( 'radio-news-theme-weather', get_template_directory_uri() . '/assets/js/weather.js', array(), '1.0.0', true );
+
+    // Google Fonts (Merriweather para títulos, Roboto para corpo)
+	wp_enqueue_style( 'radio-news-google-fonts', 'https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@400;500;700&display=swap', array(), null );
+
+    // CSS Personalizado para fontes e outros ajustes
+	wp_enqueue_style( 'radio-news-custom-styles', get_template_directory_uri() . '/assets/css/custom.css', array('radio-news-theme-style'), '1.0.1' );
 }
 add_action( 'wp_enqueue_scripts', 'radio_news_theme_scripts' );
 
