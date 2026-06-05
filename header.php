@@ -15,10 +15,10 @@
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'radio-news-theme' ); ?></a>
 
     <!-- Overlay for Off-Canvas -->
-    <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-60 z-40 hidden transition-opacity duration-300 opacity-0" aria-hidden="true"></div>
+    <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-60 z-[60] hidden transition-opacity duration-300 opacity-0" aria-hidden="true"></div>
 
     <!-- Off-Canvas Menu -->
-    <aside id="offcanvas-menu" class="fixed top-0 left-0 h-full w-[80%] md:w-[350px] bg-white text-gray-800 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col overflow-hidden" aria-label="Menu Principal" aria-hidden="true">
+    <aside id="offcanvas-menu" class="fixed top-0 left-0 h-full w-[80%] md:w-[350px] bg-white text-gray-800 z-[70] transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col overflow-hidden" aria-label="Menu Principal" aria-hidden="true">
         
         <!-- Menu Header -->
         <div class="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50">
@@ -79,6 +79,11 @@
                 <li class="border-b border-gray-100">
                     <a href="#" class="flex items-center w-full px-5 py-4 text-left font-semibold text-gray-700 hover:bg-gray-50 transition-colors">
                         <i class="fa-solid fa-shield-halved w-6 text-center mr-2 text-gray-400"></i> Termos de Uso
+                    </a>
+                </li>
+                <li class="border-b border-gray-100">
+                    <a href="<?php echo esc_url( home_url( '/lgpd/' ) ); ?>" class="flex items-center w-full px-5 py-4 text-left font-semibold text-gray-700 hover:bg-gray-50 transition-colors">
+                        <i class="fa-solid fa-user-shield w-6 text-center mr-2 text-gray-400"></i> LGPD & Sorteios
                     </a>
                 </li>
             </ul>
