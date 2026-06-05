@@ -23,7 +23,7 @@
         <!-- Menu Header -->
         <div class="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50">
             <span class="font-bold text-lg text-[#1E73BE]">Menu</span>
-            <button id="close-menu-btn" class="text-gray-500 hover:text-red-600 focus:outline-none p-2" aria-label="Fechar menu">
+            <button id="close-menu-btn" class="text-gray-500 hover:text-[#336666] focus:outline-none p-2" aria-label="Fechar menu">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
         </div>
@@ -86,7 +86,7 @@
 
         <!-- Menu Footer (Fixed Bottom) -->
         <div class="absolute bottom-0 left-0 w-full p-4 bg-gray-100 border-t border-gray-200">
-            <a href="#" class="flex items-center justify-center w-full bg-[#1E73BE] text-white py-3 px-4 rounded font-bold hover:bg-red-700 transition-colors shadow-sm">
+            <a href="#" class="flex items-center justify-center w-full bg-[#1E73BE] text-white py-3 px-4 rounded font-bold hover:bg-[#336666] transition-colors shadow-sm">
                 <i class="fa-solid fa-user mr-2"></i> Acesso Restrito
             </a>
         </div>
@@ -129,7 +129,7 @@
             
             <!-- Left: Menu Toggle + Logo -->
             <div class="flex items-center h-full">
-                <button id="open-menu-btn" class="text-white hover:bg-red-700 p-2 rounded mr-1 md:mr-3 focus:outline-none transition-colors flex flex-col justify-center items-center h-10 w-10 md:h-12 md:w-12" aria-label="Abrir menu" aria-expanded="false" aria-controls="offcanvas-menu">
+                <button id="open-menu-btn" class="text-white hover:bg-[#336666] p-2 rounded mr-1 md:mr-3 focus:outline-none transition-colors flex flex-col justify-center items-center h-10 w-10 md:h-12 md:w-12" aria-label="Abrir menu" aria-expanded="false" aria-controls="offcanvas-menu">
                     <i class="fa-solid fa-bars text-xl md:text-2xl"></i>
                     <span class="text-[9px] md:text-[10px] uppercase font-bold tracking-wider mt-0.5 md:mt-1">Menu</span>
                 </button>
@@ -162,7 +162,7 @@
             <!-- Right: Acesso Restrito & Mobile Search Toggle -->
             <div class="flex items-center h-full space-x-2 md:space-x-4">
                 <!-- Mobile Search Icon -->
-                <button id="mobile-search-btn" class="md:hidden text-white p-2 hover:bg-red-700 rounded transition-colors focus:outline-none">
+                <button id="mobile-search-btn" class="md:hidden text-white p-2 hover:bg-[#336666] rounded transition-colors focus:outline-none">
                     <i class="fa-solid fa-magnifying-glass text-lg"></i>
                 </button>
                 
@@ -173,7 +173,7 @@
                 </a>
                 
                 <!-- Acesso Restrito Mobile Icon -->
-                <a href="#" class="md:hidden text-white p-2 hover:bg-red-700 rounded transition-colors">
+                <a href="#" class="md:hidden text-white p-2 hover:bg-[#336666] rounded transition-colors">
                     <i class="fa-solid fa-user text-lg"></i>
                 </a>
             </div>

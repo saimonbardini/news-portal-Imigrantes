@@ -112,4 +112,23 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileSearchContainer.classList.toggle('hidden');
         });
     }
+
+    // 4. Minimize/Maximize Player Logic
+    const minimizeBtn = document.getElementById('minimize-player-btn');
+    const maximizeBtn = document.getElementById('maximize-player-btn');
+    const playerContainer = document.getElementById('radio-player-container');
+
+    if (minimizeBtn && maximizeBtn && playerContainer) {
+        minimizeBtn.addEventListener('click', () => {
+            playerContainer.classList.add('translate-y-full'); // Slide down out of view
+            setTimeout(() => {
+                maximizeBtn.classList.remove('hidden'); // Show floating open button
+            }, 300); // match transition duration
+        });
+
+        maximizeBtn.addEventListener('click', () => {
+            maximizeBtn.classList.add('hidden'); // Hide floating open button
+            playerContainer.classList.remove('translate-y-full'); // Bring player back up
+        });
+    }
 });
