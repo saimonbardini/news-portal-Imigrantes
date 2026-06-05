@@ -9,14 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const timeVal = document.querySelector('.time-val');
 
     const cities = [
-        { name: 'Turvo', lat: -28.9348, lon: -49.6806 },
-        { name: 'Timbé do Sul', lat: -28.8358, lon: -49.8453 },
+        { name: 'Araranguá', lat: -28.9344, lon: -49.4858 },
+        { name: 'Balneário Arroio do Silva', lat: -28.9836, lon: -49.4122 },
+        { name: 'Balneário Gaivota', lat: -29.1558, lon: -49.5761 },
         { name: 'Ermo', lat: -28.9831, lon: -49.6433 },
-        { name: 'Morro Grande', lat: -28.8456, lon: -49.7906 },
-        { name: 'Meleiro', lat: -28.8292, lon: -49.6372 },
         { name: 'Jacinto Machado', lat: -29.0272, lon: -49.7656 },
-        { name: 'Criciúma', lat: -28.6775, lon: -49.3703 },
-        { name: 'Araranguá', lat: -28.9344, lon: -49.4858 }
+        { name: 'Maracajá', lat: -28.8502, lon: -49.4533 },
+        { name: 'Meleiro', lat: -28.8292, lon: -49.6372 },
+        { name: 'Morro Grande', lat: -28.8456, lon: -49.7906 },
+        { name: 'Passo de Torres', lat: -29.3308, lon: -49.7286 },
+        { name: 'Praia Grande', lat: -29.1983, lon: -49.9500 },
+        { name: 'Santa Rosa do Sul', lat: -29.1302, lon: -49.7125 },
+        { name: 'São João do Sul', lat: -29.2227, lon: -49.7644 },
+        { name: 'Sombrio', lat: -29.1122, lon: -49.6175 },
+        { name: 'Timbé do Sul', lat: -28.8358, lon: -49.8453 },
+        { name: 'Turvo', lat: -28.9348, lon: -49.6806 }
     ];
 
     // Function to map WMO Weather codes to emojis
