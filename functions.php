@@ -67,3 +67,34 @@ function radio_news_custom_logo_classes( $html ) {
 	return $html;
 }
 add_filter( 'get_custom_logo', 'radio_news_custom_logo_classes' );
+
+/**
+ * Registra e atualiza a contagem de visualizações de posts.
+ * Não conta visualizações de administradores logados ou bots.
+ *
+ * @param int $postID O ID do post.
+ */
+function radio_news_set_post_views($postID) {
+    // Garante que estamos apenas em uma página de post
+    if ( ! is_singular('post') ) {
+        return;
+    }
+
+    // Não contar para administradores logados ou bots conhecidos.
+    // A função is_bot() pode não estar definida em alguns cenários, causando um erro fatal.
+    // Adicionamos uma verificação para garantir que a função exista antes de chamá-la.
+    $is_a_bot = function_exists('is_bot') && is_bot();
+    if ( ( is_user_logged_in() && current_user_can('administrator') ) || $is_a_bot ) {
+        return;
+    }
+
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+
+    if ( $count === '' ) {
+        add_post_meta($postID, $count_key, 1);
+    } else {
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}

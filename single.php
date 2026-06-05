@@ -8,20 +8,38 @@
 get_header();
 ?>
 
-<div class="container mx-auto px-4 py-8 max-w-4xl">
-	<?php
-	while ( have_posts() ) :
-		the_post();
+<div class="container mx-auto px-4 py-8 max-w-7xl">
+	<div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+		
+		<!-- Conteúdo Principal -->
+		<main class="lg:w-2/3">
+			<?php
+			while ( have_posts() ) :
+				the_post();
 
-		get_template_part( 'template-parts/content', get_post_type() );
+				// Incrementa a contagem de visualizações do post
+				if ( function_exists('radio_news_set_post_views') ) {
+					radio_news_set_post_views( get_the_ID() );
+				}
 
-		// If comments are open or we have at least one comment, load up the comment template.
-		if ( comments_open() || get_comments_number() ) :
-			comments_template();
-		endif;
+				// Carrega o template part original para o conteúdo do post.
+				get_template_part( 'template-parts/content', get_post_type() );
 
-	endwhile; // End of the loop.
-	?>
+				// Se os comentários estiverem abertos, carrega o template de comentários.
+				if ( comments_open() || get_comments_number() ) :
+					comments_template();
+				endif;
+
+			endwhile; // Fim do loop.
+			?>
+		</main>
+
+		<!-- Sidebar -->
+		<aside class="lg:w-1/3">
+			<?php get_sidebar(); ?>
+		</aside>
+
+	</div>
 </div>
 
 <?php
