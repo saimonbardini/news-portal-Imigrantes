@@ -221,7 +221,7 @@
                     container.innerHTML = `
                         <div class="flex items-center justify-between mb-4">
                             <h4 class="text-lg font-bold text-gray-800">Turvo, SC</h4>
-                            <p class="text-base font-medium text-gray-500">${current.weatherDesc[0].value}</p>
+                            <p class="text-sm font-medium text-gray-500 capitalize">${current.weatherDesc[0].value}</p>
                         </div>
                         <div class="text-center my-5">
                             <span class="text-7xl font-light text-gray-900 tracking-tight">${current.temp_C}°</span>
@@ -240,8 +240,32 @@
                                 <p class="font-bold text-lg">${maxRainChance}%</p>
                             </div>
                         </div>
-                        <a href="https://wttr.in/${encodeURIComponent(cityName)}" target="_blank" rel="noopener noreferrer" class="block text-center text-sm text-[#1E73BE] hover:underline mt-5 font-semibold">
-                            Ver previsão completa &rarr;
+                        
+                        <!-- Card Especial: Camila Cardoso -->
+                        <div class="mt-6 relative bg-gradient-to-br from-blue-50 to-slate-50 border border-blue-100 rounded-xl p-4 shadow-sm overflow-hidden group">
+                            <div class="pr-20 relative z-10">
+                                <div class="flex items-center space-x-2 mb-1.5">
+                                    <span class="relative flex h-2.5 w-2.5">
+                                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+                                    </span>
+                                    <span class="text-[10px] font-bold uppercase text-red-600 tracking-wider">Ao Vivo na Rádio</span>
+                                </div>
+                                <h5 class="text-[15px] font-black text-[#1E73BE] mb-1 leading-tight">Camila Cardoso</h5>
+                                <p class="text-xs text-gray-700 leading-snug">
+                                    Seg a Sex às <strong class="text-gray-900">07h07</strong>, <strong class="text-gray-900">11h30</strong> e <strong class="text-gray-900">17h45</strong>
+                                </p>
+                            </div>
+                            
+                            <!-- Imagem Meteorologista -->
+                            <div class="absolute bottom-0 right-0 w-24 h-[110%] flex items-end justify-end pointer-events-none origin-bottom transform group-hover:scale-105 transition-transform duration-500">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/camila-cardoso.png" alt="Camila Cardoso" class="h-full w-auto object-contain object-bottom drop-shadow-md" onerror="this.style.display='none'">
+                            </div>
+                        </div>
+
+                        <!-- Link Ver Previsão Completa -->
+                        <a href="https://wttr.in/${encodeURIComponent(cityName)}" target="_blank" rel="noopener noreferrer" class="block text-center text-[11px] text-gray-400 hover:text-[#1E73BE] hover:underline mt-4">
+                            Ver previsão em detalhes &rarr;
                         </a>
                     `;
                 })
