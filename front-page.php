@@ -189,12 +189,41 @@ if ( count($secondary_posts) < 3 ) {
             $latest_query = new WP_Query( $latest_args );
 
             if ( $latest_query->have_posts() ) {
-                // Ajustado para 2 colunas para caber melhor ao lado da sidebar
-                echo '<div class="grid grid-cols-1 md:grid-cols-2 gap-8">';
+                // Alterado para layout em lista (uma abaixo da outra)
+                echo '<div class="flex flex-col gap-6">';
 
                 while ( $latest_query->have_posts() ) {
                     $latest_query->the_post();
-                    get_template_part( 'template-parts/content', get_post_type() );
+                    $thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium_large') ?: 'https://via.placeholder.com/600x400?text=Sem+Imagem';
+                    ?>
+                    <article id="post-<?php the_ID(); ?>" <?php post_class('flex flex-col sm:flex-row bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all group'); ?>>
+                        <!-- Imagem Reduzida na Lateral (Aprox 30% em Desktop) -->
+                        <div class="sm:w-1/3 lg:w-[30%] flex-shrink-0 relative h-52 sm:h-auto overflow-hidden bg-gray-100">
+                            <a href="<?php the_permalink(); ?>" class="block w-full h-full">
+                                <img src="<?php echo esc_url($thumbnail); ?>" alt="<?php the_title_attribute(); ?>" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            </a>
+                        </div>
+                        
+                        <!-- Conteúdo Textual ao lado -->
+                        <div class="p-5 md:p-6 flex flex-col justify-center flex-1">
+                            <?php
+                            $categories = get_the_category();
+                            if ( ! empty( $categories ) ) {
+                                echo '<span class="text-[#1E73BE] text-xs font-bold uppercase mb-2 block tracking-wider">' . esc_html( $categories[0]->name ) . '</span>';
+                            }
+                            ?>
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-[#1E73BE] transition-colors">
+                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                            </h3>
+                            <div class="text-gray-600 text-sm mb-4 line-clamp-2 md:line-clamp-3">
+                                <?php echo wp_trim_words( get_the_excerpt(), 25, '...' ); ?>
+                            </div>
+                            <div class="flex items-center text-xs font-medium text-gray-400 mt-auto">
+                                <span><i class="far fa-clock mr-1"></i> <?php echo get_the_date(); ?></span>
+                            </div>
+                        </div>
+                    </article>
+                    <?php
                 }
 
                 echo '</div>';
