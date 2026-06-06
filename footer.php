@@ -85,7 +85,7 @@
 
     <!-- Rodapé do Site (Fora do #page para que o sticky player estacione perfeitamente acima dele) -->
     <footer id="site-footer" class="bg-[#111827] text-gray-300 pt-12 pb-12 relative z-40">
-        <div class="container mx-auto px-4 max-w-7xl">
+        <div class="container mx-auto px-4 max-w-[1440px]">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                 
                 <!-- Bloco 1: Sobre a Rádio -->

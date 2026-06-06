@@ -8,11 +8,11 @@
 get_header();
 ?>
 
-<div class="container mx-auto px-4 py-8 max-w-7xl">
+<div class="container mx-auto px-4 py-8 max-w-[1440px]">
 	<div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
 		
 		<!-- Conteúdo Principal -->
-		<main class="lg:w-2/3">
+		<main class="lg:w-[70%]">
 			<?php
 			while ( have_posts() ) :
 				the_post();
@@ -35,7 +35,7 @@ get_header();
 		</main>
 
 		<!-- Sidebar -->
-		<aside class="lg:w-1/3">
+		<aside class="lg:w-[30%]">
 			<?php get_sidebar(); ?>
 		</aside>
 

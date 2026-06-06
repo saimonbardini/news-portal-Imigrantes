@@ -8,11 +8,11 @@
 get_header();
 ?>
 
-<div class="container mx-auto px-4 py-8 max-w-7xl mb-24">
+<div class="container mx-auto px-4 py-8 max-w-[1440px] mb-24">
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
 
         <!-- Conteúdo Principal -->
-        <main class="lg:w-2/3">
+        <main class="lg:w-[70%]">
             <article class="bg-white rounded-xl shadow-sm p-6 lg:p-10 border border-gray-100">
                 <header class="entry-header mb-8 border-b pb-4">
                     <h1 class="entry-title text-4xl font-bold text-gray-900 mb-2 tracking-tight leading-tight">Lei Geral de Proteção de Dados (LGPD)</h1>
@@ -51,7 +51,7 @@ get_header();
         </main>
 
         <!-- Sidebar -->
-        <aside class="lg:w-1/3">
+        <aside class="lg:w-[30%]">
             <?php get_sidebar(); ?>
         </aside>
     </div>

@@ -106,11 +106,11 @@ if ( count($secondary_posts) < 3 ) {
 ?>
 
 <!-- Seção de Manchetes (Hero Section) -->
-<section class="hero-section container mx-auto px-4 py-6 max-w-7xl">
+<section class="hero-section container mx-auto px-4 py-6 max-w-[1440px]">
     <div class="flex flex-col lg:flex-row gap-4 lg:h-[500px]">
         
-        <!-- Hero Principal (60% da largura em Desktop) -->
-        <div class="lg:w-3/5 relative rounded-lg overflow-hidden group h-[400px] lg:h-full shadow-lg">
+        <!-- Hero Principal (Aproximadamente 66% da largura em Desktop) -->
+        <div class="lg:w-2/3 relative rounded-lg overflow-hidden group h-[400px] lg:h-full shadow-lg">
             <?php if ($main_post) : 
                 $post = $main_post;
                 setup_postdata($post);
@@ -140,8 +140,8 @@ if ( count($secondary_posts) < 3 ) {
             <?php wp_reset_postdata(); endif; ?>
         </div>
 
-        <!-- Notícias Secundárias (40% da largura em Desktop) -->
-        <div class="lg:w-2/5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 lg:grid-rows-3 gap-4 h-full">
+        <!-- Notícias Secundárias (Aproximadamente 33% da largura em Desktop) -->
+        <div class="lg:w-1/3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 lg:grid-rows-3 gap-4 h-full">
             <?php foreach ( $secondary_posts as $post ) : 
                 setup_postdata($post);
                 $thumbnail = get_the_post_thumbnail_url($post->ID, 'medium_large') ?: 'https://via.placeholder.com/400x300?text=Sem+Imagem';
@@ -170,11 +170,11 @@ if ( count($secondary_posts) < 3 ) {
 </section>
 
 <!-- Conteúdo Principal com Sidebar -->
-<div class="container mx-auto px-4 py-8 max-w-7xl mb-24">
+<div class="container mx-auto px-4 py-8 max-w-[1440px] mb-24">
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
         
         <!-- Coluna de Notícias -->
-        <main class="lg:w-2/3">
+        <main class="lg:w-[70%]">
             <header class="mb-8 border-b-2 border-[#1E73BE] pb-2">
                 <h2 class="text-2xl font-bold uppercase text-[#1E73BE]">Últimas Notícias</h2>
             </header>
@@ -218,7 +218,7 @@ if ( count($secondary_posts) < 3 ) {
         </main>
 
         <!-- Sidebar Editorial -->
-        <aside class="lg:w-1/3">
+        <aside class="lg:w-[30%]">
             <?php get_sidebar(); ?>
         </aside>
 

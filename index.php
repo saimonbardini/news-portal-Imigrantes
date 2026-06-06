@@ -8,7 +8,7 @@
 get_header();
 ?>
 
-<div class="container mx-auto px-4 py-8 max-w-6xl mb-24">
+<div class="container mx-auto px-4 py-8 max-w-[1440px] mb-24">
     <?php
     if ( have_posts() ) :
 

@@ -99,7 +99,7 @@
 
     <!-- Weather Bar -->
     <div id="weather-bar" class="bg-gray-100 border-b border-gray-200 text-xs sm:text-sm text-gray-700 relative overflow-hidden z-20 h-8 sm:h-10 flex items-center">
-        <div class="container mx-auto px-4 w-full h-full flex items-center justify-between">
+        <div class="container mx-auto px-4 w-full h-full flex items-center justify-between max-w-[1440px]">
             <!-- Loading indicator -->
             <div id="weather-loading" class="w-full flex justify-center items-center h-full text-gray-500 space-x-2">
                 <i class="fa-solid fa-spinner fa-spin"></i>
@@ -130,7 +130,7 @@
     </div>
 
 	<header id="masthead" class="bg-[#1E73BE] text-white relative z-30 shadow-md">
-		<div class="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
+		<div class="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between max-w-[1440px]">
             
             <!-- Left: Menu Toggle + Logo -->
             <div class="flex items-center h-full">
