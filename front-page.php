@@ -192,8 +192,10 @@ if ( count($secondary_posts) < 3 ) {
                 // Alterado para layout em lista (uma abaixo da outra)
                 echo '<div class="flex flex-col gap-6">';
 
+                $post_counter = 0;
                 while ( $latest_query->have_posts() ) {
                     $latest_query->the_post();
+                    $post_counter++;
                     $thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium_large') ?: 'https://via.placeholder.com/600x400?text=Sem+Imagem';
                     ?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class('flex flex-col sm:flex-row bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all group'); ?>>
@@ -224,6 +226,46 @@ if ( count($secondary_posts) < 3 ) {
                         </div>
                     </article>
                     <?php
+
+                    // Banner Promocional "Memórias da Imigrantes" após a 3ª notícia
+                    if ( $post_counter == 3 ) {
+                        ?>
+                        <div class="relative overflow-hidden rounded-xl shadow-md bg-[#1E73BE] text-white p-6 md:p-8 group border border-[#4392C9]/30 hover:shadow-lg transition-shadow">
+                            <!-- Imagem Histórica de Fundo -->
+                            <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                                <!-- Usando mask-image para desvanecer a borda esquerda da imagem graciosamente -->
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/imigrantes-de-turvo.png" alt="Memórias Rádio Imigrantes" class="absolute right-0 top-0 w-full md:w-[70%] h-full object-cover object-top opacity-60 md:opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 grayscale" style="-webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%); mask-image: linear-gradient(to right, transparent 0%, black 30%);">
+                                <!-- Degradê para garantir leitura do texto na esquerda -->
+                                <div class="absolute inset-0 bg-gradient-to-r from-[#1E73BE] via-[#1E73BE]/80 md:via-[#1E73BE]/30 to-transparent"></div>
+                            </div>
+                            
+                            <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                                <div class="md:w-2/3">
+                                    <h3 class="text-2xl md:text-3xl font-black mb-2 flex items-center gap-3 drop-shadow-md">
+                                        <i class="fa-solid fa-clock-rotate-left"></i> Memórias da Imigrantes
+                                    </h3>
+                                    <p class="text-blue-50 text-sm leading-relaxed opacity-95">
+                                        Você tem uma história especial com a nossa rádio? Queremos reviver os momentos marcantes com você! Acesse nossa galeria de fotos históricas e envie as suas próprias recordações.
+                                    </p>
+                                </div>
+                                <div class="md:w-1/3 md:text-right w-full text-center">
+                                    <?php
+                                    // Busca automaticamente o link da página que utiliza o template 'page-memorias.php'
+                                    $memorias_pages = get_pages( array(
+                                        'meta_key'   => '_wp_page_template',
+                                        'meta_value' => 'page-memorias.php',
+                                        'number'     => 1
+                                    ) );
+                                    $memorias_url = ! empty( $memorias_pages ) ? get_permalink( $memorias_pages[0]->ID ) : home_url( '/memorias/' );
+                                    ?>
+                                    <a href="<?php echo esc_url( $memorias_url ); ?>" class="inline-block bg-white text-[#1E73BE] font-bold py-3 px-6 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all text-sm">
+                                        Visitar Galeria <i class="fa-solid fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
                 }
 
                 echo '</div>';
