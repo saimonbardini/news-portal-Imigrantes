@@ -1,50 +1,86 @@
 <?php
-/**
- * O arquivo principal de template.
- *
- * @package Radio_News_Theme
- */
+session_start();
 
-get_header();
+// Se já estiver logado, redireciona para o painel
+if (isset($_SESSION['intranet_logged_in']) && $_SESSION['intranet_logged_in'] === true) {
+    header("Location: dashboard.php");
+    exit;
+}
+
+$erro = false;
+
+// Processa o formulário de login
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $usuario = $_POST['usuario'] ?? '';
+    $senha = $_POST['senha'] ?? '';
+
+    // Credenciais de exemplo (no futuro, você pode conectar em um banco de dados)
+    if ($usuario === 'admin' && $senha === 'radio123') {
+        $_SESSION['intranet_logged_in'] = true;
+        $_SESSION['intranet_user'] = 'Administrador';
+        header("Location: dashboard.php");
+        exit;
+    } else {
+        $erro = true;
+    }
+}
 ?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Restrito - Rádio Imigrantes</title>
+    <!-- Carregamos o Tailwind CSS via CDN já que não estamos no WordPress -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
 
-<div class="container mx-auto px-4 py-8 max-w-[1440px] mb-24">
-    <?php
-    if ( have_posts() ) :
+<div class="max-w-md w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 relative">
+    <div class="h-2 w-full bg-gradient-to-r from-[#1E73BE] to-[#336666]"></div>
 
-        if ( is_home() && ! is_front_page() ) :
-            ?>
-            <header class="mb-8 border-b-2 border-[#1E73BE] pb-2">
-                <h1 class="page-title text-3xl font-bold uppercase text-[#1E73BE]"><?php single_post_title(); ?></h1>
-            </header>
-            <?php
-        endif;
+    <div class="p-8 sm:p-10">
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-50 text-[#1E73BE] mb-4">
+                <i class="fa-solid fa-user-lock text-2xl"></i>
+            </div>
+            <h2 class="text-3xl font-black text-gray-900 tracking-tight">Acesso Restrito</h2>
+            <p class="mt-2 text-sm text-gray-600">Sistema Gerencial Independente.</p>
+        </div>
 
-        echo '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">';
+        <?php if ($erro): ?>
+            <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded-r-md">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-circle-exclamation text-red-500 flex-shrink-0"></i>
+                    <p class="ml-3 text-sm text-red-700 font-medium">Credenciais inválidas. Tente novamente.</p>
+                </div>
+            </div>
+        <?php endif; ?>
 
-        /* Start the Loop */
-        while ( have_posts() ) :
-            the_post();
+        <form class="space-y-6" action="index.php" method="POST">
+            <div>
+                <label for="usuario" class="block text-sm font-bold text-gray-700 mb-1">Usuário</label>
+                <input id="usuario" name="usuario" type="text" required class="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E73BE] focus:border-[#1E73BE] sm:text-sm bg-gray-50 focus:bg-white transition-colors" placeholder="Ex: admin">
+            </div>
 
-            get_template_part( 'template-parts/content', get_post_type() );
+            <div>
+                <label for="senha" class="block text-sm font-bold text-gray-700 mb-1">Senha</label>
+                <input id="senha" name="senha" type="password" required class="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E73BE] focus:border-[#1E73BE] sm:text-sm bg-gray-50 focus:bg-white transition-colors" placeholder="••••••••">
+            </div>
 
-        endwhile;
-
-        echo '</div>';
-
-        the_posts_navigation(array(
-            'prev_text' => '<span class="font-bold text-[#1E73BE] uppercase">← Anteriores</span>',
-            'next_text' => '<span class="font-bold text-[#1E73BE] uppercase">Mais recentes →</span>',
-            'class'     => 'mt-8 flex justify-between'
-        ));
-
-    else :
-
-        get_template_part( 'template-parts/content', 'none' );
-
-    endif;
-    ?>
+            <button type="submit" class="w-full flex justify-center py-3.5 px-4 border border-transparent text-sm font-bold rounded-lg text-white bg-[#1E73BE] hover:bg-[#336666] shadow-md hover:shadow-lg transition-all items-center gap-2">
+                Entrar no Sistema <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            </button>
+        </form>
+        
+        <div class="mt-6 text-center">
+            <a href="../" class="text-sm text-[#1E73BE] hover:underline flex items-center justify-center gap-1 font-medium">
+                <i class="fa-solid fa-arrow-left"></i> Voltar para o portal de notícias
+            </a>
+        </div>
+    </div>
 </div>
 
-<?php
-get_footer();
+</body>
+</html>

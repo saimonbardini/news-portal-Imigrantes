@@ -91,7 +91,7 @@
 
         <!-- Menu Footer (Fixed Bottom) -->
         <div class="absolute bottom-0 left-0 w-full p-4 bg-gray-100 border-t border-gray-200">
-            <a href="#" class="flex items-center justify-center w-full bg-[#1E73BE] text-white py-3 px-4 rounded font-bold hover:bg-[#336666] transition-colors shadow-sm">
+            <a href="<?php echo esc_url( home_url( '/intranet/' ) ); ?>" class="flex items-center justify-center w-full bg-[#1E73BE] text-white py-3 px-4 rounded font-bold hover:bg-[#336666] transition-colors shadow-sm">
                 <i class="fa-solid fa-user mr-2"></i> Acesso Restrito
             </a>
         </div>
@@ -172,13 +172,13 @@
                 </button>
                 
                 <!-- Acesso Restrito Desktop -->
-                <a href="#" class="hidden md:flex items-center space-x-2 border border-white hover:bg-white hover:text-[#1E73BE] px-5 py-2 rounded-full transition-colors font-semibold text-sm shadow-sm">
+                <a href="<?php echo esc_url( home_url( '/intranet/' ) ); ?>" class="hidden md:flex items-center space-x-2 border border-white hover:bg-white hover:text-[#1E73BE] px-5 py-2 rounded-full transition-colors font-semibold text-sm shadow-sm">
                     <i class="fa-solid fa-user"></i>
                     <span>Acesso Restrito</span>
                 </a>
                 
                 <!-- Acesso Restrito Mobile Icon -->
-                <a href="#" class="md:hidden text-white p-2 hover:bg-[#336666] rounded transition-colors">
+                <a href="<?php echo esc_url( home_url( '/intranet/' ) ); ?>" class="md:hidden text-white p-2 hover:bg-[#336666] rounded transition-colors">
                     <i class="fa-solid fa-user text-lg"></i>
                 </a>
             </div>
